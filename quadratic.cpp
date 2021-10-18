@@ -2,31 +2,32 @@
 #include <vector>
 #include <cmath>
 using namespace std;
-vector<int> quadraticRoots(int a, int b, int c)
+class solution
 {
-    vector<int> res;
-    long idk = (b * b) - (4 * a * c);
-    if (idk < 0)
+public:
+    vector<int> quadratic_roots(int a, int b, int c)
     {
-        res.push_back(-1);
-        return res;
+        //write your code here
+        vector<int> ans;
+        float D = (b * b) - (4 * a * c);
+        if (D < 0)
+        {
+            ans.push_back(-1);
+            return ans;
+        }
+        else
+        {
+            float sq = sqrt(D);
+            float root1 = ((0 - b) + (sq)) / (2 * a);
+            float root2 = ((0 - b) - (sq)) / (2 * a);
+            ans.push_back((int)min(root1, root2));
+            ans.push_back((int)min(root1, root2));
+        }
     }
-    int r1 = ((0 - b) + (sqrt(idk))) / (2 * a);
-    int r2 = ((0 - b) - (sqrt(idk))) / (2 * a);
-    cout << sqrt(idk) << "utg" << endl;
-    res.push_back(r1);
-    res.push_back(r2);
-    return res;
-}
+};
+solution obj;
 int main()
 {
-    int a, b, c;
-    cin >> a >> b >> c;
-    vector<int> res = quadraticRoots(a, b, c);
-    for (auto i = res.begin(); i < res.end(); i++)
-    {
-        cout << *i << "\t";
-    }
 
     return 0;
 }

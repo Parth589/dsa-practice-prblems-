@@ -2,7 +2,8 @@
 using namespace std;
 class solution
 {
-private:
+    // private:
+public:
     bool is_prime(int n)
     {
         if (n <= 1)
@@ -19,7 +20,7 @@ private:
         return true;
     }
 
-public:
+    friend void prime_factors_recursive(int, int);
     void prime_factors(int n)
     {
         if (n <= 1)
@@ -94,20 +95,59 @@ public:
                 n /= (i + 2);
             }
         }
-        if (n > 1)
+        if (n > 1) //if the n will become a prime number or n is already a prime number, then it will not divisible by any number in that case print n
         {
             cout << n << " ";
         }
-        cout << endl
-             << "count: " << count_w_loop;
+        // cout << endl
+        //      << "count: " << count_w_loop;
         cout << endl
              << "count: " << count_wo_loop;
     }
 };
-
+solution global;
+int count_global = 0;
+void prime_factors_recursive(int n, int i = 5)
+{
+    //  lvl 4 : recursive method (not so optimised)
+    if (global.is_prime(n))
+    {
+        cout << n << " ";
+        return;
+    }
+    while (n % 2 == 0 && n != 0)
+    {
+        count_global++;
+        cout << 2 << " ";
+        n /= 2;
+    }
+    while (n % 3 == 0 && n != 0)
+    {
+        count_global++;
+        cout << 3 << " ";
+        n /= 3;
+    }
+    while (n % i == 0 && n != 0)
+    {
+        count_global++;
+        cout << i << " ";
+        n /= i;
+    }
+    while (n % (i + 2) == 0 && n != 0)
+    {
+        count_global++;
+        cout << (i + 2) << " ";
+        n /= i + 2;
+    }
+    prime_factors_recursive(n, i + 6);
+}
 int main()
 {
-    solution obj;
-    obj.prime_factors(1245465);
+    global.prime_factors(1245465);
+    cout << endl
+         << endl;
+    prime_factors_recursive(1245465);
+    cout << endl
+         << "Count: " << count_global;
     return 0;
 }
