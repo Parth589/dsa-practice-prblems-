@@ -19,7 +19,7 @@ public:
         // return true;
 
         //method 2: brian's algorithm
-        if ((n & (n - 1)) == 0)
+        if (((n & (n - 1)) == 0) && (n != 0))
         {
             return true;
         }

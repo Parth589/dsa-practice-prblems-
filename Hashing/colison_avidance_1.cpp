@@ -2,7 +2,7 @@
 #include <list>
 #include <vector>
 using namespace std;
-const int hash_modulo = 10;
+const int hash_modulo = 60;
 vector<list<int>> arr(hash_modulo);
 void insert(int element)
 {
@@ -20,7 +20,7 @@ void insert()
 }
 int search(int element)
 {
-    int index = element % 10;
+    int index = element % hash_modulo;
     cout << "Searching...;" << endl;
     for (auto i = arr[index].begin(); i != arr[index].end(); i++)
     {

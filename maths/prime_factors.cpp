@@ -64,6 +64,7 @@ public:
         //lvl 3  -> O(sqrt(n) * n * log n)
         int count_w_loop = 0;
         int count_wo_loop = 0;
+
         while (n % 2 == 0 && n != 0)
         {
             count_w_loop++;
@@ -71,6 +72,7 @@ public:
             cout << 2 << " ";
             n /= 2;
         }
+
         while (n % 3 == 0 && n != 0)
         {
             count_w_loop++;
@@ -144,10 +146,10 @@ void prime_factors_recursive(int n, int i = 5)
 int main()
 {
     global.prime_factors(1245465);
-    cout << endl
-         << endl;
-    prime_factors_recursive(1245465);
-    cout << endl
-         << "Count: " << count_global;
+    // cout << endl
+    //      << endl;
+    // prime_factors_recursive(1245465);
+    // cout << endl
+    //      << "Count: " << count_global;
     return 0;
 }

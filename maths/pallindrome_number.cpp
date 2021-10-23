@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
+
 bool is_palindrome(int n)
 {
     int rev = 0;
@@ -16,6 +17,7 @@ bool is_palindrome(int n)
     }
     return false;
 }
+
 int main()
 {
     cout << is_palindrome(14455441);

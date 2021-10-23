@@ -26,6 +26,6 @@ public:
 int main()
 {
     solution obj;
-    obj.multiples(12);
+    obj.multiples(2520);
     return 0;
 }
