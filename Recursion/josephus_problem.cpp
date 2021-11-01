@@ -18,8 +18,6 @@ public:
 solution obj;
 int main()
 {
-    // 785623= 56;
-    //Driver code
     cout << "start :" << endl;
     int t, n, k;
     cin >> t;
