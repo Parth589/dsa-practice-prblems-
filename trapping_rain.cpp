@@ -44,6 +44,6 @@ int main()
     }
 
     cout << trappingWater(arr, n) << endl;
-    cout << trapped(arr, n) << endl;
+    // cout << trapped(arr, n) << endl;
     return 0;
 }

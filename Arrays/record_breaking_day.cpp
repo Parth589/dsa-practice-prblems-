@@ -11,8 +11,7 @@ problem: you are given an integer array where a[i] represents the number of sold
     void record_breaking_day(int arr[], int n)
     {
         //write your code here
-        int mx = INT_MIN;
-
+        int mx = 0;
         for (int i = 0; i < n; i++)
         {
             if (arr[i] > arr[i + 1] && arr[i] > mx)
