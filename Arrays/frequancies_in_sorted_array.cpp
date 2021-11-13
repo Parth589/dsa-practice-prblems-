@@ -6,8 +6,6 @@ public:
     void frequancy(int arr[], int n)
     {
         //write your code here
-        //idea: to start with second element and increment frequancy while the element is happening
-        // and for the last element set an extra corner case.
         int start = 0, end = 0;
         while (end < n)
         {
