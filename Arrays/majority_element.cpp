@@ -4,7 +4,7 @@ class solution
 {
     int most_occuring_element(int arr[], int n)
     {
-        int index = 0;
+        int index = 0; //the index which's count is preserved
         int count = 1; // count of arr[index];
         for (int i = 1; i < n; i++)
         {
