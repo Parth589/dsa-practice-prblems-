@@ -1,46 +1,44 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
-//not completed
 class solution
 {
 public:
-    int first_occuring_element(int arr[], int n, int key)
+    int count_1s(int a[], int n)
     {
         //write your code here
         int low = 0, high = n - 1;
         while (low <= high)
         {
             int mid = (low + high) / 2;
-            if (arr[mid] < key)
+            if (a[mid] == 0)
             {
                 low = mid + 1;
             }
-            else if (arr[mid] > key)
-            {
-                high = mid - 1;
-            }
             else
             {
-                if ((arr[mid - 1] != key) || (mid == 0))
+                if (a[mid - 1] == 0 || mid == 0)
                 {
-                    return mid;
+                    return n - mid;
                 }
                 high = mid - 1;
             }
         }
-        return -1;
+        return 0;
     }
 };
 solution obj;
+// 001111
+
 int main()
 {
+    //Driver code
     int n, key;
-    cin >> n >> key;
+    cin >> n;
     int arr[n];
     for (size_t i = 0; i < n; i++)
     {
         cin >> arr[i];
     }
-    cout << obj.first_occuring_element(arr, n, key);
+    cout << obj.count_1s(arr, n);
     return 0;
 }
