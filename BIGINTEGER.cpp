@@ -104,79 +104,15 @@ public:
         BIGINTEGER n(addition);
         return n;
     }
-    BIGINTEGER multiply(BIGINTEGER x)
-    {
-        string str_res;
-        string str1 = n;
-        string str2 = x.n;
-        int carry = 0;
-        // cout << "Status: str_res=str1=str2=carry= " << str_res << "\t" << str1 << "\t" << str2 << "\t" << carry << endl;
-        getch();
-        vector<BIGINTEGER> arr(str2.length());
-        int count = 0;
-
-        //////////////////////////
-
-        for (int i = 0; i < str2.length(); i++)
-        {
-            int b = str2.length() - i - 1;
-            for (int m = 0; m < b; m++)
-            {
-                // cout << "Status:  m=" << m << endl;
-                getch();
-                arr[count].n += "0";
-            }
-            // cout << "Status: b= " << b << endl;
-            getch();
-            for (int j = str1.length() - 1; j >= 0; j--)
-            {
-                /////////////////////////////
-                int num1 = str1[j] - '0';
-                int num2 = str2[i] - '0';
-                int r = carry + (num1 * num2);
-                if (r > 9)
-                {
-                    getch();
-                    carry = r / 10;
-                    r = r % 10;
-                    // cout << "Status: num1=num2=r=carry= " << num1 << "\t" << num2 << "\t" << r << "\t" << carry << "\t" << endl;
-                }
-                else
-                {
-                    getch();
-                    carry = 0;
-                    // cout << "Status: num1=num2=r=carry=" << num1 << "\t" << num2 << "\t" << r << "\t" << carry << "\t" << endl;
-                }
-                arr[count].n += to_string(r);
-            }
-            count++;
-            getch();
-            reverse(arr[count].n.begin(), arr[count].n.end());
-            carry = 0;
-            cout << "status :count=" << count << endl;
-        }
-
-        /////////////////////////
-
-        BIGINTEGER res("0");
-        for (int i = 0; i < arr.size(); i++)
-        {
-            cout << "Hello world" << endl;
-            res = res.add(arr[i]);
-        }
-        return res;
-    }
 };
 
 int main()
 {
     string s1;
     string s;
-    cout << "entr:" << endl;
     cin >> s >> s1;
     BIGINTEGER n(s);
     BIGINTEGER x(s1);
-    n.multiply(x).print();
     // cout << to_string(0);
     return 0;
 }
