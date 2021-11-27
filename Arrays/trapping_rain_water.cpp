@@ -1,9 +1,51 @@
 #include <bits/stdc++.h>
 using namespace std;
-class solution
+class solution1
+{
+    int maxIndex(int a[], int low, int high)
+    {
+        int res = low;
+        for (size_t i = low; i <= high; i++)
+        {
+            if (a[res] < a[i])
+            {
+                res = i;
+            }
+        }
+        return res;
+    }
+
+public:
+    int trapping_rain_water(int a[], int n)
+    {
+        int left_max_index = 0, right_max_index = maxIndex(a, 0, n - 1);
+        int left_max = a[left_max_index];
+        int right_max = a[right_max_index];
+        int ans = 0;
+        for (size_t i = 1; i < n - 1; i++)
+        {
+            if (i > right_max_index)
+            {
+                right_max_index = maxIndex(a, i, n - 1);
+                right_max = a[right_max_index];
+            }
+
+            if (a[i] > left_max)
+            {
+                left_max = a[i];
+                left_max_index = i;
+            }
+
+            ans += min(left_max, right_max) - a[i];
+        }
+        return ans;
+    }
+};
+
+class solution2
 {
 public:
-    int trapping_rain_water(int arr[], int n) //->time: O(n) , space: O(n)
+    int trapping_rain_water(int arr[], int n)
     {
         //write your code here
         int left_max[n];
@@ -28,38 +70,13 @@ public:
         }
         return ans;
     }
-    int trapping_rain_water(int arr[], int n) //-> time : O(n) space : O(1)
-    {
-        int left_max = 0;
-        int right_max = 0;
-        for (int i = 0; i < n; i++)
-        {
-            if (arr[i] > arr[right_max])
-            {
-                right_max = i;
-            }
-        }
-
-        int ans = 0;
-        for (int i = 0; i < n; i++)
-        {
-            // left_max = max(arr[left_max], arr[i]);
-            if (arr[i] > arr[left_max])
-            {
-                left_max = i;
-            }
-            // if ()
-            // {
-            //     /* code */
-            // }
-            ans += min(arr[left_max], arr[right_max]) - arr[i];
-        }
-    }
 };
-solution obj;
+solution1 obj1;
+solution2 obj2;
 
 int main()
 {
+    //Driver code
     int n;
     cin >> n;
     int arr[n];
@@ -67,6 +84,7 @@ int main()
     {
         cin >> arr[i];
     }
-    cout << obj.trapping_rain_water(arr, n);
+    cout << obj1.trapping_rain_water(arr, n) << endl;
+    cout << obj2.trapping_rain_water(arr, n) << endl;
     return 0;
 }

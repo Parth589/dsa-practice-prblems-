@@ -1,6 +1,5 @@
 #include <iostream>
 using namespace std;
-//not completed
 class solution
 {
 public:
