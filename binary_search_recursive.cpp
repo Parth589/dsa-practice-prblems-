@@ -20,6 +20,7 @@ int binary(int arr[], int low, int high, int key)
 int main()
 {
     int arr[5] = {1, 2, 3, 4, 5};
+    
     cout << binary(arr, 0, 4, 5);
     return 0;
 }

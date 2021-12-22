@@ -2,18 +2,7 @@
 #include <string.h>
 #include <cmath>
 using namespace std;
-// bool isPrime(int n)
-// {
-//   int temp = sqrt(n);
-//   for (int i = 2; i <= temp; i++)
-//   {
-//     if (n % i == 0)
-//     {
-//       return false;
-//     }
-//   }
-//   return true;
-// }
+
 void seive(int n)
 {
   bool array[n + 1];
@@ -27,8 +16,7 @@ void seive(int n)
       for (int j = i * i; j <= n; j = j + i)
       {
         array[j] = false;
-      }
-    }
+          }}
   }
   // print the element which are true
   for (int i = 2; i <= n; i++)
@@ -42,6 +30,6 @@ void seive(int n)
 }
 int main()
 {
-  seive(10);
-  return 0;
+  seive(25);
+    return 0;
 }

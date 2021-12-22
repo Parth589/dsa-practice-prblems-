@@ -4,7 +4,9 @@ class solution
 {
 public:
     /*
-    Problem : You are given an array You have to find the longest subarray which have alternating even odd element and no. of evn elements = no. of odd elements
+    Problem : You are given an array You have to find the longest subarray
+    which have alternating even odd element and no. of evn elements = no. of
+    odd elements
     */
     int longest_even_odd_subarray(int arr[], int n)
     {

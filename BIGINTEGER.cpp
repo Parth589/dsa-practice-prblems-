@@ -1,177 +1,98 @@
 #include <iostream>
-#include <algorithm>
-#include <cstring>
-#include <vector>
-#include <conio.h>
+#include <list>
 using namespace std;
 class BIGINTEGER
 {
 private:
-    string n;
+    list<int> n;
 
 public:
-    BIGINTEGER(string str)
+    BIGINTEGER(list<int> n)
     {
-        n = str;
+        this->n = n;
     }
-    BIGINTEGER()
+    BIGINTEGER(int x)
     {
+        while (x)
+        {
+            n.push_front(x % 10);
+            x /= 10;
+        }
     }
     void print()
     {
-        cout << (this->n) << endl;
+        for (auto i = n.begin(); i != n.end(); i++)
+        {
+            cout << (*i) << "\t";
+        }
+        cout << endl;
     }
-    BIGINTEGER add(BIGINTEGER x)
+    BIGINTEGER add(BIGINTEGER &x)
     {
-        string s1 = n;
-        string s2 = x.n;
-        string addition;
-        int c1 = s1.length() - 1, c2 = s2.length() - 1;
+        list<int> result;
+        auto iter1 = x.n.end();
+        auto iter2 = this->n.end();
+        int s1 = x.n.size();
+        int s2 = n.size();
         int carry = 0;
-        while (c1 >= 0 && c2 >= 0)
+        for (int i = 0; i < min(s1, s2); i++)
         {
-            int num1 = s1[c1] - '0';
-            int num2 = s2[c2] - '0';
-            int result = num1 + num2 + carry;
-            if (result > 9)
-            {
-                carry = result / 10;
-                result = result % 10;
-            }
+            int res = (*iter1) + (*iter2) + carry;
+            iter1--;
+            iter2--;
+            if (res > 9)
+                carry = res / 10;
             else
-            {
                 carry = 0;
-            }
-            //add result to the string
-            addition += to_string(result);
-            c1--;
-            c2--;
+            res = res % 10;
+            result.push_front(res);
         }
-
-        while (carry != 0 && c1 >= 0)
+        while (carry != 0 && iter1 != x.n.begin())
         {
-            int num = (s1[c1] - '0');
-            // result
-            num += carry;
-            if (num > 9)
-            {
-                carry = num / 10;
-                addition += to_string(num % 10);
-            }
+            int res = *iter1 + carry;
+            if (res > 9)
+                carry = res / 10;
             else
-            {
-                addition += to_string(num);
                 carry = 0;
-            }
-
-            c1--;
+            res = res % 10;
+            result.push_front(res);
+            iter1--;
         }
-
-        while (carry != 0 && c2 >= 0)
+        while (carry != 0 && iter2 != n.begin())
         {
-            int num = (s2[c2] - '0');
-            // result
-            num += carry;
-            if (num > 9)
-            {
-                carry = num / 10;
-                addition += to_string(num % 10);
-            }
+            int res = *iter2 + carry;
+            if (res > 9)
+                carry = res / 10;
             else
-            {
-                addition += to_string(num);
                 carry = 0;
-            }
-            c2--;
-        }
-        if (carry != 0)
-        {
-            addition += to_string(carry);
-            carry = 0;
+            res = res % 10;
+            result.push_front(res);
+            iter2--;
         }
 
-        while (c1 >= 0)
+        while (carry == 0 && iter1 != x.n.begin())
         {
-            addition += s1[c1];
-            c1--;
+            result.push_front(*iter1);
+            iter1--;
         }
-        while (c2 >= 0)
+        while (carry == 0 && iter2 != n.begin())
         {
-            addition += s2[c2];
-            c2--;
+            result.push_front(*iter2);
+            iter2--;
         }
-        reverse(addition.begin(), addition.end());
-        BIGINTEGER n(addition);
-        return n;
+        BIGINTEGER ans(result);
+        return ans;
     }
 };
 
 int main()
 {
-    string s1;
-    string s;
-    cin >> s >> s1;
-    BIGINTEGER n(s);
-    BIGINTEGER x(s1);
-    // cout << to_string(0);
+    int x, y;
+    cin >> x >> y;
+    BIGINTEGER n(x), s(y);
+    n.print();
+    s.print();
+    cout << "H" << endl;
+    n.add(s).print();
     return 0;
 }
-
-// string str_res;
-//         int carry = 0;
-//         int count1 = n.length() - 1;
-//         int count2 = str.length() - 1;
-
-//         while ((count1 >= 0) && (count2 >= 0))
-//         {
-//             int num_n = (int)n[count1] - 48;
-//             int num_str = (int)str[count2] - 48;
-//             // cout << "Num:" << num_n << " N2 :" << num_str << endl;
-//             carry = (num_n + num_str + carry) / 10;
-//             // cout << "carry" << carry << endl;
-//             //Something went wrong...
-//             if ((num_n + num_str + carry) <= 9)
-//             {
-//                 // char c = (char)(num_n + num_str + carry + 48);
-//                 string d = to_string((num_n + num_str + carry));
-//                 str_res += d;
-//                 cout << "H" << d << endl;
-//             }
-
-//             else
-//             {
-//                 // char c = (char)(((num_n + num_str + carry) % 10) + 48);
-//                 string d = to_string(((num_n + num_str + carry) % 10));
-//                 str_res += d;
-//                 cout << "N" << d << endl;
-//                 // carry = 0;
-//             }
-//             //Something went wrong...
-//             // if (count1 == 8)
-//             cout << "Str:" << str_res << endl;
-//             cout << "c1:" << count1 << endl
-//                  << "c2:" << count2 << endl;
-//             cout << "Carry: " << carry << endl;
-//             count1--;
-//             count2--;
-//             // cout << str_res << endl;
-//         }
-//         if (count1 >= 0)
-//             while (count1 >= 0)
-//             {
-//                 str_res += n[count1];
-//                 count1--;
-//             }
-//         // cout << str_res << endl;
-//         if (count2 >= 0)
-//             while (count2 >= 0)
-//             {
-//                 str_res += str[count2];
-//                 count2--;
-//             }
-//         reverse(str_res.begin(), str_res.end());
-
-//         // cout << str_res << endl;
-//         BIGINTEGER res(str_res);
-//         return res;
-//         // // return str_res;
