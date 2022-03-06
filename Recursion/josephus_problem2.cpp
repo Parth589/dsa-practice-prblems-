@@ -3,6 +3,15 @@ using namespace std;
 class solution
 {
 public:
+    int simulation(int n, int k)
+    {
+        vector<pair<int, bool>> arr(n);
+        for (size_t i = 0; i < n; i++)
+        {
+            arr[i].first;
+        }
+        return 0;
+    }
     int josephus(int n, int k) // time ->O(n^2) space O(n)
     {
         int total_kills = 0;
@@ -41,8 +50,9 @@ solution obj;
 int main()
 {
     //Driver code
-    int n;
-    cin >> n;
-    cout << obj.josephus(n, 2);
+    // int n;
+    // cin >> n;
+    // cout << obj.josephus(n, 2);
+    obj.simulation(3, 2);
     return 0;
 }

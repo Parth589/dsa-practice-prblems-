@@ -3,6 +3,9 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "valarray": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "shared_mutex": "cpp",
+        "charconv": "cpp",
+        "random": "cpp"
     }
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cmath>
 using namespace std;
 class solution
 {
@@ -45,12 +46,31 @@ public:
             cout << tmp[i];
         }
     }
+    int binary(int n)
+    {
+        int i = 0;
+        int ans = 0;
+        while (n)
+        {
+            int bit = n & 1;
+            ans = (bit * pow(10, i))+ans;
+            n = n >> 1;
+            i++;
+        }
+        return ans;
+    }
 };
 int main()
 {
     solution obj;
-    obj.binary_representation(2);
-    cout << endl;
-    obj.binary_representation_iterative(2);
+    // obj.binary_representation(2);
+    // cout << endl;
+    // obj.binary_representation_iterative(2);
+    while (true)
+    {
+        int n;
+        cin >> n;
+        cout << obj.binary(n);
+    }
     return 0;
 }

@@ -26,6 +26,7 @@ class solution
     }
 
 public:
+    /* idea: if the sorted rotated array if devided into 2 parts one of the half must be sorted. */
     int search(int arr[], int low, int high, int key)
     {
         //write your code here
@@ -78,7 +79,7 @@ public:
                 return mid;
             }
             //check if left half is sorted
-            if (arr[mid] > arr[low])
+            if (arr[mid] >= arr[low])
             {
                 if (key < arr[mid] && key >= arr[low]) //key is present in left half
                     high = mid - 1;
@@ -99,7 +100,40 @@ public:
     }
 };
 solution obj;
-
+class solution2
+{
+private:
+public:
+    int search(vector<int> a, int key)
+    {
+        int n = a.size();
+        int start = 0, end = n - 1;
+        while (start <= end)
+        {
+            int mid = start + (end - start) / 2;
+            if (a[mid] == key)
+                return mid;
+            else if (a[mid] < a[end])
+            {
+                //mid is at 2nd line
+                if (a[mid] <= key <= a[end]) // if key lies in 2nd line
+                    start = mid + 1;
+                else
+                    end = mid - 1;
+            }
+            else
+            {
+                //mid is at 1st line
+                if (a[start] <= key <= a[mid]) //key lies in 1st line
+                    end = mid - 1;
+                else
+                    start = mid + 1;
+            }
+        }
+        return -1;
+    }
+};
+solution2 o2;
 int main()
 {
     //Driver code
@@ -109,11 +143,17 @@ int main()
         int n, x;
         cin >> n >> x;
         int arr[n];
+        vector<int> a(n);
         for (size_t i = 0; i < n; i++)
         {
             cin >> arr[i];
         }
-        cout << obj.search_iter(arr, n, x);
+        for (size_t i = 0; i < n; i++)
+        {
+            a[i] = arr[i];
+        }
+        cout << obj.search_iter(arr, n, x) << endl;
+        cout << o2.search(a, x);
     }
     return 0;
 }
